@@ -52,6 +52,8 @@ header p{
     text-decoration:none;
     border-radius:40px;
     font-weight:bold;
+    border:none;
+    cursor:pointer;
 }
 
 section{
@@ -106,6 +108,29 @@ section{
     background:#0f241b;
     padding:25px;
     border-radius:20px;
+}
+
+.news-box label{
+    display:block;
+}
+
+.news-box input{
+    width:100%;
+    padding:15px;
+    margin-top:10px;
+    border-radius:10px;
+    border:none;
+    font-size:1rem;
+}
+
+.news-box input:focus{
+    outline:2px solid #5cff8d;
+}
+
+#explanation{
+    margin-top:20px;
+    font-size:1.1rem;
+    line-height:1.6;
 }
 
 footer{
@@ -269,6 +294,32 @@ and roster moves as they happen.
 
 </section>
 
+<section>
+
+<h2 class="section-title">🤖 AI Game Explainer</h2>
+
+<div class="news-box">
+
+<label for="playInput">
+Enter a play, penalty, or football term:
+</label>
+
+<input
+id="playInput"
+type="text"
+placeholder="Example: Roughing the Passer"
+>
+
+<button type="button" onclick="explainPlay()" class="btn">
+Explain
+</button>
+
+<div id="explanation" aria-live="polite"></div>
+
+</div>
+
+</section>
+
 <footer>
 <h3>GAME EYE</h3>
 <p>Players • News • Stats • You</p>
@@ -290,6 +341,42 @@ yards.innerText = 1850 + count;
 }
 
 },100);
+
+function explainPlay() {
+
+const play =
+document.getElementById("playInput")
+.value
+.toLowerCase();
+
+const explanation =
+document.getElementById("explanation");
+
+if(play.includes("roughing")){
+
+explanation.innerHTML =
+"<strong>Roughing the Passer:</strong> A defender hit the quarterback after the ball was released or made illegal contact, resulting in a 15-yard penalty.";
+
+}
+else if(play.includes("holding")){
+
+explanation.innerHTML =
+"<strong>Holding:</strong> A player illegally grabbed an opponent to gain an advantage.";
+
+}
+else if(play.includes("offsides")){
+
+explanation.innerHTML =
+"<strong>Offsides:</strong> A defender crossed the line of scrimmage before the ball was snapped.";
+
+}
+else{
+
+explanation.innerHTML =
+"AI explanation unavailable. Connect to ChatGPT, Microsoft Copilot API, or OpenAI API for dynamic explanations.";
+
+}
+}
 
 </script>
 
