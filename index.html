@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Eye | Jets Nation In Focus</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#07150f;
+    color:white;
+}
+
+header{
+    background:linear-gradient(135deg,#0b291c,#145a32);
+    padding:80px 10%;
+    text-align:center;
+}
+
+.logo{
+    width:180px;
+    border-radius:50%;
+    margin-bottom:20px;
+}
+
+header h1{
+    font-size:4rem;
+    color:#ffffff;
+}
+
+header p{
+    margin-top:15px;
+    font-size:1.2rem;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 35px;
+    background:#27ae60;
+    color:white;
+    text-decoration:none;
+    border-radius:40px;
+    font-weight:bold;
+}
+
+section{
+    padding:80px 10%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+    color:#5cff8d;
+    font-size:2.5rem;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#0f241b;
+    padding:30px;
+    border-radius:20px;
+    border:1px solid #1f513a;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#5cff8d;
+}
+
+.mission{
+    text-align:center;
+    font-size:1.1rem;
+    max-width:900px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.news-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.news-box{
+    background:#0f241b;
+    padding:25px;
+    border-radius:20px;
+}
+
+footer{
+    background:#04110b;
+    text-align:center;
+    padding:30px;
+    margin-top:50px;
+}
+
+.stats{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:40px;
+}
+
+.stat-box{
+    text-align:center;
+}
+
+.stat-box h2{
+    color:#5cff8d;
+    font-size:3rem;
+}
+
+@media(max-width:768px){
+
+.news-container{
+    grid-template-columns:1fr;
+}
+
+header h1{
+    font-size:2.5rem;
+}
+
+}
+</style>
+
+</head>
+<body>
+
+<header>
+
+<img src="gameeye-logo.png" alt="Game Eye Logo" class="logo">
+
+<h1>GAME EYE</h1>
+
+<p>
+Understand the game as it unfolds. Get instant player insights,
+breaking news, and real-time statistics designed specifically
+for New York Jets fans.
+</p>
+
+<a href="#features" class="btn">Explore</a>
+
+</header>
+
+<section>
+
+<h2 class="section-title">Our Mission</h2>
+
+<p class="mission">
+Our mission is to help New York Jets fans gain a deeper understanding
+of the game through player statistics, performance insights,
+and real-time player news. We empower fans to stay informed,
+understand game-day decisions, and feel more connected to Jets Nation.
+</p>
+
+</section>
+
+<section id="features">
+
+<h2 class="section-title">Features</h2>
+
+<div class="features">
+
+<div class="card">
+<h3>🏈 Game Explainer</h3>
+<p>
+Confused about a penalty or coaching decision?
+Get simple explanations instantly.
+</p>
+</div>
+
+<div class="card">
+<h3>📊 Player Statistics</h3>
+<p>
+Track passing, rushing, receiving, defensive stats,
+and game performance in real time.
+</p>
+</div>
+
+<div class="card">
+<h3>📰 Player News</h3>
+<p>
+Stay up-to-date on injuries, roster changes,
+and breaking player updates.
+</p>
+</div>
+
+<div class="card">
+<h3>✅ Verified Information</h3>
+<p>
+All updates come from trusted sports sources
+and official reports.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Player Spotlight</h2>
+
+<div class="stats">
+
+<div class="stat-box">
+<h2 id="yards">1850</h2>
+<p>Passing Yards</p>
+</div>
+
+<div class="stat-box">
+<h2 id="touchdowns">15</h2>
+<p>Touchdowns</p>
+</div>
+
+<div class="stat-box">
+<h2 id="rating">98.4</h2>
+<p>QB Rating</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Latest News</h2>
+
+<div class="news-container">
+
+<div class="news-box">
+<h3>Player Status Updates</h3>
+<p>
+Monitor injury reports and active game status
+for every player.
+</p>
+</div>
+
+<div class="news-box">
+<h3>Breaking Team News</h3>
+<p>
+Get alerts on trades, signings,
+and roster moves as they happen.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+<h3>GAME EYE</h3>
+<p>Players • News • Stats • You</p>
+<p>Jets Nation In Focus</p>
+</footer>
+
+<script>
+
+let count = 0;
+
+const yards = document.getElementById("yards");
+
+setInterval(() => {
+
+count++;
+
+if(count < 50){
+yards.innerText = 1850 + count;
+}
+
+},100);
+
+</script>
+
+</body>
+</html>
