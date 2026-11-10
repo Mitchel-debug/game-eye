@@ -133,6 +133,20 @@ section{
     line-height:1.6;
 }
 
+#playerResult{
+    margin-top:20px;
+    line-height:1.6;
+}
+
+#playerResult pre{
+    margin-top:12px;
+    padding:15px;
+    overflow-x:auto;
+    border-radius:10px;
+    background:#07150f;
+    color:#d5ffe2;
+}
+
 footer{
     background:#04110b;
     text-align:center;
@@ -270,6 +284,27 @@ and official reports.
 
 <section>
 
+<h2 class="section-title">🔍 Player Search</h2>
+
+<div class="news-box">
+
+<label for="playerSearch">Search the Jets player roster:</label>
+
+<input
+ type="text"
+ id="playerSearch"
+ placeholder="Search Jets Player..."
+ autocomplete="off"
+>
+
+<div id="playerResult" aria-live="polite"></div>
+
+</div>
+
+</section>
+
+<section>
+
 <h2 class="section-title">Latest News</h2>
 
 <div class="news-container">
@@ -374,6 +409,79 @@ else{
 
 explanation.innerHTML =
 "AI explanation unavailable. Connect to ChatGPT, Microsoft Copilot API, or OpenAI API for dynamic explanations.";
+
+}
+}
+
+const players = [
+
+{
+name: "Garrett Wilson",
+position: "WR",
+yards: 1104,
+touchdowns: 7
+},
+
+{
+name: "Breece Hall",
+position: "RB",
+yards: 994,
+touchdowns: 5
+},
+
+{
+name: "Sauce Gardner",
+position: "CB",
+interceptions: 3
+},
+
+{
+name: "Quinnen Williams",
+position: "DT",
+sacks: 8
+}
+
+];
+
+document
+.getElementById("playerSearch")
+.addEventListener("keyup", searchPlayer);
+
+function searchPlayer(){
+
+const search =
+document
+.getElementById("playerSearch")
+.value
+.trim()
+.toLowerCase();
+
+const result =
+document.getElementById("playerResult");
+
+if(!search){
+result.textContent = "";
+return;
+}
+
+const found =
+players.find(player =>
+player.name.toLowerCase().includes(search)
+);
+
+if(found){
+
+result.innerHTML = `
+<h3>${found.name}</h3>
+<p>Position: ${found.position}</p>
+<pre>${JSON.stringify(found, null, 2)}</pre>
+`;
+
+}
+else{
+
+result.innerHTML =
+"<p>No player found.</p>";
 
 }
 }
