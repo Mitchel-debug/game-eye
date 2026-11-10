@@ -147,6 +147,61 @@ section{
     color:#d5ffe2;
 }
 
+.pulse-controls{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.pulse-btn{
+    background:#123725;
+    color:#d8ffe5;
+    border:1px solid #2c7851;
+    border-radius:999px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.pulse-btn:hover, .pulse-btn.active{
+    background:#27ae60;
+    color:white;
+}
+
+.pulse-panel{
+    background:#0d2218;
+    border:1px solid #234d39;
+    border-radius:18px;
+    padding:25px;
+}
+
+.pulse-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:16px;
+    margin-top:15px;
+}
+
+.pulse-stat{
+    background:#0f241b;
+    border:1px solid #1c4734;
+    border-radius:12px;
+    padding:18px;
+}
+
+.pulse-stat h4{
+    color:#9bf8b0;
+    margin-bottom:8px;
+    font-size:0.9rem;
+}
+
+.pulse-stat strong{
+    font-size:1.8rem;
+}
+
 footer{
     background:#04110b;
     text-align:center;
@@ -278,6 +333,38 @@ and official reports.
 <p>QB Rating</p>
 </div>
 
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">🎯 Game Day Pulse</h2>
+
+<div class="pulse-controls">
+<button class="pulse-btn active" data-type="passing">Passing</button>
+<button class="pulse-btn" data-type="rushing">Rushing</button>
+<button class="pulse-btn" data-type="defense">Defense</button>
+<button class="pulse-btn" data-type="special">Special Teams</button>
+</div>
+
+<div id="pulsePanel" class="pulse-panel">
+    <h3 id="pulseTitle">Passing Attack</h3>
+    <p id="pulseSummary">Jets are creating explosive plays through the air with quick timing routes and downfield pressure.</p>
+    <div class="pulse-grid">
+        <div class="pulse-stat">
+            <h4>Completion %</h4>
+            <strong id="statOne">67%</strong>
+        </div>
+        <div class="pulse-stat">
+            <h4>Big Plays</h4>
+            <strong id="statTwo">18</strong>
+        </div>
+        <div class="pulse-stat">
+            <h4>Pressure Rate</h4>
+            <strong id="statThree">31%</strong>
+        </div>
+    </div>
 </div>
 
 </section>
@@ -485,6 +572,56 @@ result.innerHTML =
 
 }
 }
+
+const pulseData = {
+  passing: {
+    title: "Passing Attack",
+    summary: "Jets are creating explosive plays through the air with quick timing routes and downfield pressure.",
+    one: "67%",
+    two: "18",
+    three: "31%"
+  },
+  rushing: {
+    title: "Ground Game",
+    summary: "The run game is controlling tempo and creating favorable down-and-distance situations for the offense.",
+    one: "4.7 YPC",
+    two: "32",
+    three: "44%"
+  },
+  defense: {
+    title: "Defensive Pressure",
+    summary: "The front is winning at the line and collapsing pockets before quarterbacks can settle down.",
+    one: "8 Sacks",
+    two: "3 TOs",
+    three: "79%"
+  },
+  special: {
+    title: "Special Teams",
+    summary: "Field position has been a huge advantage, with return teams creating momentum and limiting explosive plays.",
+    one: "26.1 Avg",
+    two: "2 TDs",
+    three: "91%"
+  }
+};
+
+function updatePulse(type) {
+  const data = pulseData[type];
+  if (!data) return;
+
+  document.getElementById("pulseTitle").textContent = data.title;
+  document.getElementById("pulseSummary").textContent = data.summary;
+  document.getElementById("statOne").textContent = data.one;
+  document.getElementById("statTwo").textContent = data.two;
+  document.getElementById("statThree").textContent = data.three;
+
+  document.querySelectorAll(".pulse-btn").forEach((button) => {
+    button.classList.toggle("active", button.dataset.type === type);
+  });
+}
+
+document.querySelectorAll(".pulse-btn").forEach((button) => {
+  button.addEventListener("click", () => updatePulse(button.dataset.type));
+});
 
 </script>
 
